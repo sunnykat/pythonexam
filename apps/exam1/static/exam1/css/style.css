@@ -1,0 +1,21 @@
+.error{
+  color:red;
+}
+
+.success{
+  color:green;
+}
+
+ .messages{
+   display:inline-block;
+ }
+
+ #left60{
+   width:60%;
+   height:80%;
+   display:inline-block;
+ }
+#right40{
+  width:39%;
+  height:80%;
+}
