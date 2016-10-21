@@ -1,0 +1,47 @@
+{% extends 'exam1/base.html' %}
+
+{%block title%}Add Plan{% endblock %}
+
+{%block nav%}
+<li><a href="{% url 'exam:index' %}">Home</a></li>
+<li><a href="{% url 'login:logout'%}">Logout</a></li>
+{% endblock %}
+
+{% block content_left %}
+<div id="left60">
+<h2>Add a Trip</h2>
+
+<form action="{% url 'exam:create' %}" method='post'>
+  <input type="hidden" name='user' value={{request.session.id}}>
+  {% csrf_token %}
+  <ul>
+  <li><label for="dest">Destination:</label>
+  <input type="text" name='dest'></li>
+  <li><label for="plan">Description:</label>
+  <input type="text" name='plan'></li>
+  <li><label for="start">Travel Date From:</label>
+  <input type="date" min="{{today}}" name='start' placeholder="mm/dd/yyyy"></li>
+  <li><label for="end">Travel Date To:</label>
+  <input type="date" min="{{today}}" name='end' placeholder="mm/dd/yyyy"></li>
+  <input type="submit" value='Add'>
+  </ul>
+</form>
+</div>
+{% endblock %}
+
+{% block content_right}
+<div id="right40">
+  <div id="alert">
+    {%if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      {% if message.tags == 'error' %}
+      <li class="{{message.tags}}">{{message}}</li>
+      {%else%}
+      <li>{{message}}</li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</div>

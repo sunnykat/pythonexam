@@ -24,6 +24,6 @@ admin.site.register(User, UserAdmin)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^exam1/', include('apps.exam1.urls', namespace='exam')),
+    url(r'^travels/', include('apps.exam1.urls', namespace='exam')),
     url(r'^', include('apps.login.urls', namespace='login')),
 ]

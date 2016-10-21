@@ -11,10 +11,10 @@
 <h1>Please Register</h1>
 <form action="{% url 'login:process' %}" method='post'>
   <ul>
-    <li>First Name: <input type="text" name="fname"></li>
-    <li>Last Name: <input type="text" name="lname"></li>
-    <li>Email: <input type="text" name="email"></li>
+    <li>Name: <input type="text" name="name"></li>
+    <li>User Name: <input type="text" name='username'></li>
     <li>Password: <input type="password" name="pass1"></li>
+    <li>Password should be at least 8 characters</li>
     <li>Confirm Password: <input type="password" name="pass2"></li>
     {% csrf_token %}
     <li><input type="submit" value="Register"></li>
@@ -25,7 +25,7 @@
 <form action="{% url 'login:login' %}" method='post'>
 <h1>Or Login</h1>
   <ul>
-    <li>Email: <input type="text" name='email'></li>
+    <li>Username: <input type="text" name='username'></li>
     <li>Password: <input type="password" name="pass"></li>
     {% csrf_token %}
     <li><input type="submit" value='Login'></li>

@@ -1,18 +1,66 @@
 {% extends 'exam1/base.html' %}
 
-{%block title%}exam1 Home{% endblock %}
+{%block title%}Travel Dashboard{% endblock %}
 
 {%block nav%}
 <li><a href="{% url 'login:logout'%}">Logout</a></li>
 {% endblock %}
 
 {%block content_left %}
-<div id="left60">
+<div id="top">
+  <h3>Your Trip Schedules</h3>
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Travel Start Date</th>
+      <th>Travel End Date</th>
+      <th>Plans</th>
+    </tr>
+    {% for item in mytravel %}
+    <tr>
+      <td><a href="{% url 'exam:show' d_id=item.id %}">{{item.dest}}</a></td>
+      <td>{{item.start}}</td>
+      <td>{{item.end}}</td>
+      <td>{{item.plan}}</td>
+    </tr>
+    {% endfor %}
+    {% for item in othertravel %}
+    {% if user in item.joined.all %}
+    <tr>
+      <td><a href="{% url 'exam:show' d_id=item.id %}">{{item.dest}}</a></td>
+      <td>{{item.start}}</td>
+      <td>{{item.end}}</td>
+      <td>{{item.plan}}</td>
+    </tr>
+    {%endif%}
+    {%endfor%}
+  </table>
 </div>
 {%endblock%}
 
 {%block content_right %}
-<div id="right40">
-
+<div id="bottom">
+<h3>Other User's Travel Plans</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Destination</th>
+    <th>Travel Start Date</th>
+    <th>Travel End Date</th>
+    <th>Do you want to join?</th>
+  </tr>
+  {% for item in othertravel %}
+  {% if user not in item.joined.all %}
+  <tr>
+    <td>{{item.user.name}}</td>
+    <td><a href="{% url 'exam:show' d_id=item.id %}">{{item.dest}}</a></td>
+    <td>{{item.start}}</td>
+    <td>{{item.end}}</td>
+    <td><a href="{% url 'exam:join' d_id=item.id %}">Join</a></td>
+  </tr>
+  {%endif%}
+  {% endfor %}
+</table>
 </div>
+<a href="{% url 'exam:add' %}" style='float:right;'>Add Travel Plans</a>
 {%endblock%}

@@ -8,11 +8,11 @@
   <link rel="stylesheet" type='text/css' href="{% static 'exam1/css/style.css' %}">
   <title>{%block title%}{%endblock%}</title>
 </head>
-<div id="header" style="display:block; height:10%;">
+<div id="header" style="display:block; width:90%; height:10%;">
   {%if messages %}
   <ul class="messages">
     {% for message in messages %}
-    {% if message.tags == 'success' %}
+    {% if message.tags %}
     <li class="{{message.tags}}">{{message}}</li>
     {% endif %}
     {% endfor %}
